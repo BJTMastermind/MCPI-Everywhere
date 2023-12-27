@@ -1,14 +1,5 @@
 project(images)
 
-# Title Background
-if(NOT MCPI_HEADLESS_MODE)
-    install(
-        FILES "background.png"
-        DESTINATION "${MCPI_INSTALL_DIR}/data/images/gui"
-        RENAME "titleBG.png"
-    )
-endif()
-
 # Chest Model
 if(NOT MCPI_HEADLESS_MODE)
     install(

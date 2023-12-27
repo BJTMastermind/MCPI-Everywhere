@@ -7,7 +7,6 @@
 __attribute__((constructor)) static void init() {
     media_ensure_loaded();
     run_tests();
-    init_version();
     init_compat();
 #ifdef MCPI_SERVER_MODE
     init_server();
@@ -21,7 +20,6 @@ __attribute__((constructor)) static void init() {
     init_camera();
     init_touch();
     init_atlas();
-    init_title_screen();
     init_skin();
 #endif
     init_textures();

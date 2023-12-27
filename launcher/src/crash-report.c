@@ -34,7 +34,7 @@ static void show_report(const char *log_filename) {
             "--width", CRASH_REPORT_DIALOG_WIDTH,
             "--height", CRASH_REPORT_DIALOG_HEIGHT,
             "--text-info",
-            "--text", MCPI_APP_BASE_TITLE " has crashed!\n\nNeed help? Consider asking on the <a href=\"https://discord.com/invite/aDqejQGMMy\">Discord server</a>! <i>If you believe this is a problem with " MCPI_APP_BASE_TITLE " itself, please upload this crash report to the #bugs Discord channel.</i>",
+            "--text", "Minecraft: Pi Edition (MCPI-Everywhere) has crashed!\n\n<i>If you believe this is a problem with Minecraft: Pi Edition itself, please upload this crash report to a issue on the <a href=\"https://github.com/BJTMastermind/MCPI-Everywhere/issues\">Github</a>.</i>",
             "--filename", log_filename,
             "--no-wrap",
             "--font", "Monospace",

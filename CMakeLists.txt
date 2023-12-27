@@ -53,16 +53,6 @@ else()
 endif()
 set(MCPI_APP_ID "${DEFAULT_APP_ID}" CACHE STRING "App ID")
 
-# App Title
-set(MCPI_APP_BASE_TITLE "Minecraft: Pi Edition: Reborn" CACHE STRING "Base App Title")
-set(DEFAULT_APP_TITLE "${MCPI_APP_BASE_TITLE}")
-if(MCPI_SERVER_MODE)
-    string(APPEND DEFAULT_APP_TITLE " (Server)")
-else()
-    string(APPEND DEFAULT_APP_TITLE " (Client)")
-endif()
-set(MCPI_APP_TITLE "${DEFAULT_APP_TITLE}" CACHE STRING "App Title")
-
 # Specify Variant Name
 set(MCPI_VARIANT_NAME "minecraft-pi-reborn")
 if(MCPI_SERVER_MODE)
@@ -194,7 +184,6 @@ set_property(
     APPEND
     PROPERTY CMAKE_CONFIGURE_DEPENDS VERSION
 )
-file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" MCPI_VERSION)
 file(TIMESTAMP "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" MCPI_VERSION_DATE "%Y-%m-%d" UTC)
 
 # Build libreborn

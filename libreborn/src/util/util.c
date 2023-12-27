@@ -46,9 +46,6 @@ void unlock_file(const char *file, int fd) {
 }
 
 // Access Configuration At Runtime
-const char *reborn_get_version() {
-    return MCPI_VERSION;
-}
 int reborn_is_headless() {
 #ifdef MCPI_HEADLESS_MODE
     return 1;

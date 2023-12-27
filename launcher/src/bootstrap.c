@@ -129,9 +129,6 @@ static void print_debug_information() {
     const char *const command[] = {"uname", "-a", NULL};
     run_debug_command(command, "System Information");
 
-    // Version
-    DEBUG("Reborn Version: v%s", MCPI_VERSION);
-
     // Architecture
     const char *arch = "Unknown";
 #ifdef __x86_64__
@@ -156,7 +153,6 @@ void pre_bootstrap(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--version") == 0 || strcmp(argv[i], "-v") == 0) {
             // Print
-            printf("Reborn v%s\n", MCPI_VERSION);
             fflush(stdout);
             exit(EXIT_SUCCESS);
         }
