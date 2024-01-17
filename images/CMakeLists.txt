@@ -1,13 +1,5 @@
 project(images)
 
-# Chest Model
-if(NOT MCPI_HEADLESS_MODE)
-    install(
-        FILES "chest.png"
-        DESTINATION "${MCPI_INSTALL_DIR}/data/images/item"
-    )
-endif()
-
 # Icon
 install(
     FILES "icon.png"

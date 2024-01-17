@@ -4,7 +4,6 @@
 #include <symbols/minecraft.h>
 #include <media-layer/core.h>
 
-#include <mods/feature/feature.h>
 #include <mods/init/init.h>
 #include "input-internal.h"
 #include <mods/input/input.h>
@@ -34,26 +33,11 @@ void init_input() {
     // Miscellaneous
     _init_misc();
 
-    // Toggleable Options
-    _init_toggle();
-
-    // Item Dropping
-    _init_drop();
-
-    // Enable Bow & Arrow Fix
-    _init_bow();
-
     // Loop
     overwrite_calls((void *) Minecraft_tickInput, (void *) Minecraft_tickInput_injection);
 
-    // Allow Attacking Mobs
-    _init_attack();
-
-    // Allow Opening Crafting With Controller
-    _init_crafting();
-
     // Disable Raw Mouse Motion
-    if (feature_has("Disable Raw Mouse Motion (Not Recommended)", server_disabled)) {
+    if (false) {
         media_set_raw_mouse_motion_enabled(0);
     }
 }

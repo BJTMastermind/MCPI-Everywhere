@@ -3,8 +3,6 @@
 
 #include "input-internal.h"
 #include <mods/input/input.h>
-#include <mods/feature/feature.h>
-#include <mods/creative/creative.h>
 
 // Enable Miscellaneous Input Fixes
 static int enable_misc = 0;
@@ -86,7 +84,7 @@ static void _handle_mouse_grab(unsigned char *minecraft) {
 static bool Gui_tickItemDrop_Minecraft_isCreativeMode_call_injection(unsigned char *minecraft) {
     if (!enable_misc || SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_GRAB_OFF) {
         // Call Original Method
-        return creative_is_restricted() && (*Minecraft_isCreativeMode)(minecraft);
+        return (*Minecraft_isCreativeMode)(minecraft);
     } else {
         // Disable Item Drop Ticking
         return 1;
@@ -103,8 +101,7 @@ static void Gui_handleClick_injection(unsigned char *gui, int32_t param_2, int32
 
 // Init
 void _init_misc() {
-    enable_misc = feature_has("Miscellaneous Input Fixes", server_disabled);
-    if (enable_misc) {
+    if (0) {
         // Fix OptionsScreen Ignoring The Back Button
         patch_address(OptionsScreen_handleBackEvent_vtable_addr, (void *) OptionsScreen_handleBackEvent_injection);
         // Fix "Sleeping Beauty" Bug

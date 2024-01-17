@@ -7,21 +7,10 @@
 #include <libreborn/libreborn.h>
 #include <symbols/minecraft.h>
 
-#include <mods/misc/misc.h>
-#include <mods/feature/feature.h>
 #include <mods/textures/textures.h>
 #include <mods/init/init.h>
 
 #include "stb_image.h"
-
-// Animated Water
-static void Minecraft_tick_injection(unsigned char *minecraft) {
-    // Tick Dynamic Textures
-    unsigned char *textures = *(unsigned char **) (minecraft + Minecraft_textures_property_offset);
-    if (textures != NULL) {
-        (*Textures_tick)(textures, true);
-    }
-}
 
 // Store Texture Sizes
 struct texture_data {
@@ -202,11 +191,6 @@ static Texture AppPlatform_linux_loadTexture_injection(__attribute__((unused)) u
 
 // Init
 void init_textures() {
-    // Tick Dynamic Textures (Animated Water)
-    if (feature_has("Animated Water", server_disabled)) {
-        misc_run_on_tick(Minecraft_tick_injection);
-    }
-
     // Scale Animated Textures
     overwrite_call((void *) 0x53274, (void *) Textures_tick_glTexSubImage2D_injection);
 

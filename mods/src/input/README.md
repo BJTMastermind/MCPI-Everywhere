@@ -7,4 +7,3 @@ This mod fixes various input-related bugs, including:
 
 It also adds various features, including:
 * Hide GUI and third person toggle keys.
-* Dropping items with ``Q``.

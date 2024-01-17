@@ -3,7 +3,6 @@
 #include <errno.h>
 
 #include <mods/compat/compat.h>
-#include <mods/screenshot/screenshot.h>
 #include <mods/init/init.h>
 
 #include <libreborn/libreborn.h>
@@ -14,8 +13,6 @@
 #include <media-layer/core.h>
 
 #include <mods/input/input.h>
-#include <mods/sign/sign.h>
-#include <mods/chat/chat.h>
 #include <mods/home/home.h>
 #endif
 
@@ -54,52 +51,9 @@ HOOK(SDL_PollEvent, int, (SDL_Event *event)) {
                 if (event->key.keysym.sym == SDLK_F11) {
                     media_toggle_fullscreen();
                     handled = 1;
-                } else if (event->key.keysym.sym == SDLK_F2) {
-                    screenshot_take(home_get());
-                    handled = 1;
-                } else if (event->key.keysym.sym == SDLK_F1) {
-                    input_hide_gui();
-                    handled = 1;
-                } else if (event->key.keysym.sym == SDLK_F5) {
-                    input_third_person();
-                    handled = 1;
-                } else if (event->key.keysym.sym == SDLK_t) {
-                    // Only When In-Game With No Other Chat Windows Open
-                    if (SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_GRAB_ON && chat_get_counter() == 0) {
-                        // Open Chat
-                        chat_open();
-                    }
-                    // Mark Handled
-                    handled = 1;
                 } else if (event->key.keysym.sym == SDLK_ESCAPE) {
                     // Treat Escape As Back Button Press (This Fixes Issues With Signs)
                     handled = input_back();
-                } else if (event->key.keysym.sym == SDLK_q) {
-                    // Drop Item
-                    input_drop((event->key.keysym.mod & KMOD_CTRL) != 0);
-                    handled = 1;
-                } else if (event->key.keysym.sym == SDLK_WORLD_0) {
-                    // Crafting
-                    input_open_crafting();
-                    handled = 1;
-                }
-                break;
-            }
-            case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP: {
-                // Track Right-Click State
-                if (event->button.button == SDL_BUTTON_RIGHT) {
-                    input_set_is_right_click(event->button.state != SDL_RELEASED);
-                } else if (event->button.button == SDL_BUTTON_LEFT) {
-                    input_set_is_left_click(event->button.state != SDL_RELEASED);
-                }
-                break;
-            }
-            case SDL_USEREVENT: {
-                // SDL_UserEvent Is Never Used In MCPI, So It Is Repurposed For Character Events
-                if (event->user.code == USER_EVENT_CHARACTER) {
-                    sign_key_press((char) event->user.data1);
-                    handled = 1;
                 }
                 break;
             }
