@@ -5,8 +5,7 @@ add_executable(launcher src/bootstrap.c src/patchelf.cpp src/util.c src/crash-re
 if(MCPI_SERVER_MODE)
     target_sources(launcher PRIVATE src/server/launcher.c)
 else()
-    embed_resource(launcher src/client/available-feature-flags)
-    target_sources(launcher PRIVATE src/client/launcher.cpp src/client/cache.cpp)
+    target_sources(launcher PRIVATE src/client/launcher.cpp)
 endif()
 target_link_libraries(launcher reborn-util LIB_LIEF)
 # RPath
